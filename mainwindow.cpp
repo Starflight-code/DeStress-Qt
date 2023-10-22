@@ -1,11 +1,28 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "mainprogram.h"
+
+#ifndef _IOSTREAM
+#define _IOSTREAM
+#include <iostream>
+#endif
+
+#ifndef _BASICIMPORTS
+#define _BASICIMPORTS
 #include <thread>
 #include <chrono>
+#include <string>
+#endif
+
 #include <math.h>
 #include <QApplication>
 #include <QPushButton>
 #include <QPropertyAnimation>
+
+#ifndef _DATASTRUCTURES_CPP
+#define _DATASTRUCTURES_CPP
+#include "datastructures.cpp"
+#endif
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -44,9 +61,25 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::stashInstanceOfProgram() {
+}
+
 
 void MainWindow::on_pushButton_clicked()
 {
     ui->listWidget->currentIndex();
+    std::vector<DataStructures::sequenceItem> sequence;
+    sequence.push_back(DataStructures::sequenceItem("Test", 5));
+    this->hide();
+    std::cout << "Starting Program";
+    auto threaded = [this](std::vector<DataStructures::sequenceItem> x) {
+        this->program.start(x);
+        this->show();
+    };
+    std::thread thread_object(threaded, sequence);
+    thread_object.detach();
+    //program.start(sequence);
+    //this->show();
+
 }
 

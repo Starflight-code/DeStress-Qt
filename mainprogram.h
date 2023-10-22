@@ -19,10 +19,10 @@ class MainProgram : public QMainWindow
 public:
     explicit MainProgram(QWidget *parent = nullptr);
     ~MainProgram();
+    void start(std::vector<DataStructures::sequenceItem>);
 
 private:
     Ui::MainProgram *ui;
-    void start(std::vector<DataStructures::sequenceItem>);
 };
 
 #endif // MAINPROGRAM_H

@@ -1,8 +1,19 @@
 #include "mainprogram.h"
 #include "ui_mainprogram.h"
+
+#include "runner.cpp"
+
+#ifndef _IOSTREAM
+#define _IOSTREAM
+#include <iostream>
+#endif
+
+#ifndef _BASICIMPORTS
+#define _BASICIMPORTS
 #include <chrono>
 #include <thread>
 #include <string>
+#endif
 
 #ifndef _DATASTRUCTURES_CPP
 #define _DATASTRUCTURES_CPP
@@ -15,27 +26,34 @@ MainProgram::MainProgram(QWidget *parent) :
 {
     ui->setupUi(this);
 }
-
 void MainProgram::start(std::vector<DataStructures::sequenceItem> list) {
+    this->show();
+    std::cout << " Initialized ";
     auto animation = [](Ui::MainProgram *window, int time_in_seconds) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         int updateInterval_ms = 10;
         int step =  updateInterval_ms / time_in_seconds;
+        std::cout << "Step: ";
+        std::cout << step;
         bool done = false;
         int i = 0;
         while(!done) {
             i += step;
             window->progressBar->setValue(i);
             std::this_thread::sleep_for(std::chrono::milliseconds(updateInterval_ms));
-            if (i > 1000) {
+            if (i >= 1000) {
                 done = true;
             }
         }
     };
     for (int i = 0; i < list.size(); i++) {
+        std::cout << "Ran ";
+        std::cout << (i + 1);
+        std::cout << " times\n";
         ui->label->setText(QString::fromStdString(list[i].label));
         animation(ui, list[i].timeInSeconds);
     }
+    this->hide();
 }
 
 MainProgram::~MainProgram()

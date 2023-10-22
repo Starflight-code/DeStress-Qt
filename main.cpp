@@ -1,10 +1,15 @@
 #include "mainwindow.h"
+#include "mainprogram.h"
 
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#ifndef _BASICIMPORTS
+#define _BASICIMPORTS
 #include <thread>
 #include <chrono>
+#include <string>
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -23,5 +28,6 @@ int main(int argc, char *argv[])
     }
     MainWindow w;
     w.show();
+    w.stashInstanceOfProgram();
     return a.exec();
 }
