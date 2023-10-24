@@ -24,13 +24,13 @@ MainProgram::MainProgram(QWidget *parent) :
 {
     ui->setupUi(this);
 }
-void MainProgram::start(std::vector<DataStructures::sequenceItem> list) {
+void MainProgram::start(std::vector<DataStructures::sequenceItem> list, int forTimeInMinutes) {
     auto animation = [](Ui::MainProgram *window, int time_in_seconds) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         int updateInterval_ms = 10;
         int step =  updateInterval_ms / time_in_seconds;
-        std::cout << "Step: ";
-        std::cout << step;
+        //std::cout << "Step: ";
+        //std::cout << step;
         bool done = false;
         int i = 0;
         while(!done) {
@@ -43,12 +43,19 @@ void MainProgram::start(std::vector<DataStructures::sequenceItem> list) {
         }
     };
     this->show();
+    int totalSeconds = 0;
     for (int i = 0; i < list.size(); i++) {
-        std::cout << "Ran ";
-        std::cout << (i + 1);
-        std::cout << " times\n";
-        ui->label->setText(QString::fromStdString(list[i].label));
-        animation(ui, list[i].timeInSeconds);
+        totalSeconds += list[i].timeInSeconds;
+    }
+    int numberOfCycles = std::round(float(forTimeInMinutes) * 60 / totalSeconds);
+    for (int i = 0; i < numberOfCycles; i++) {
+        for (int j = 0; j < list.size(); j++) {
+            //std::cout << "Ran ";
+            //std::cout << (i + 1);
+            //std::cout << " times\n";
+            ui->label->setText(QString::fromStdString(list[j].label));
+            animation(ui, list[j].timeInSeconds);
+        }
     }
     this->hide();
 }

@@ -75,11 +75,11 @@ void MainWindow::on_pushButton_clicked()
     int index = ui->listWidget->currentRow();
     this->hide();
     std::cout << "Starting Program";
-    auto threaded = [this](std::vector<DataStructures::sequenceItem> x) {
-        this->program.start(x);
+    auto threaded = [this](std::vector<DataStructures::sequenceItem> sequence, int timeInMinutes) {
+        this->program.start(sequence, timeInMinutes);
         this->show();
     };
-    std::thread thread_object(threaded, presets[index].presetContent);
+    std::thread thread_object(threaded, presets[index].presetContent, ui->spinBox->value());
     thread_object.detach();
     //program.start(sequence);
     //this->show();
