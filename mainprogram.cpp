@@ -1,8 +1,6 @@
 #include "mainprogram.h"
 #include "ui_mainprogram.h"
 
-#include "runner.cpp"
-
 #ifndef _IOSTREAM
 #define _IOSTREAM
 #include <iostream>
@@ -27,8 +25,6 @@ MainProgram::MainProgram(QWidget *parent) :
     ui->setupUi(this);
 }
 void MainProgram::start(std::vector<DataStructures::sequenceItem> list) {
-    this->show();
-    std::cout << " Initialized ";
     auto animation = [](Ui::MainProgram *window, int time_in_seconds) {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         int updateInterval_ms = 10;
@@ -46,6 +42,7 @@ void MainProgram::start(std::vector<DataStructures::sequenceItem> list) {
             }
         }
     };
+    this->show();
     for (int i = 0; i < list.size(); i++) {
         std::cout << "Ran ";
         std::cout << (i + 1);

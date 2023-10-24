@@ -24,6 +24,11 @@
 #include "datastructures.cpp"
 #endif
 
+#ifndef _FILESYSTEMMANAGER_CPP
+#define _FILESYSTEMMANAGER_CPP
+#include "filesystemmanager.cpp"
+#endif
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -48,12 +53,8 @@ MainWindow::MainWindow(QWidget *parent)
     //using namespace std::this_thread; // sleep_for, sleep_until
     //using namespace std::chrono; // nanoseconds, system_clock, seconds
     ui->setupUi(this);
-    ui->listWidget->addItem("Test");
-    ui->listWidget->addItem("Test2");
-    ui->listWidget->addItem("Test3");
     //std::thread thread_object(animation, ui, 10);
     //thread_object.detach();
-
 }
 
 MainWindow::~MainWindow()
@@ -61,22 +62,24 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::stashInstanceOfProgram() {
+void MainWindow::stashPresetList(std::vector<FilesystemManager::preset> presets) {
+    this->presets = presets;
+    for (int i = 0; i < presets.size(); i++) {
+        ui->listWidget->addItem(QString::fromUtf8(presets[i].name));
+    }
 }
 
 
 void MainWindow::on_pushButton_clicked()
 {
-    ui->listWidget->currentIndex();
-    std::vector<DataStructures::sequenceItem> sequence;
-    sequence.push_back(DataStructures::sequenceItem("Test", 5));
+    int index = ui->listWidget->currentRow();
     this->hide();
     std::cout << "Starting Program";
     auto threaded = [this](std::vector<DataStructures::sequenceItem> x) {
         this->program.start(x);
         this->show();
     };
-    std::thread thread_object(threaded, sequence);
+    std::thread thread_object(threaded, presets[index].presetContent);
     thread_object.detach();
     //program.start(sequence);
     //this->show();

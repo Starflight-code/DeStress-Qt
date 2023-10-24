@@ -1,9 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "mainprogram.h"
+#ifndef _FILESYSTEMMANAGER_CPP
+#define _FILESYSTEMMANAGER_CPP
+#include "filesystemmanager.cpp"
+#endif
 
 #include <QMainWindow>
+#include "mainprogram.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,13 +20,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void stashInstanceOfProgram();
+    void stashPresetList(std::vector<FilesystemManager::preset>);
 
 private slots:
     void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
+    std::vector<FilesystemManager::preset> presets;
     MainProgram program;
 };
 #endif // MAINWINDOW_H

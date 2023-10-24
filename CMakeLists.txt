@@ -29,7 +29,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
 
         mainprogram.h mainprogram.cpp mainprogram.ui
-        runner.cpp
+        filesystemmanager.cpp
+        constants.cpp
+
 
 
     )

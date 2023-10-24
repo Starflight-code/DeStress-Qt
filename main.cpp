@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "mainprogram.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -10,6 +9,12 @@
 #include <chrono>
 #include <string>
 #endif
+
+#ifndef _FILESYSTEMMANAGER_CPP
+#define _FILESYSTEMMANAGER_CPP
+#include "filesystemmanager.cpp"
+#endif
+
 
 int main(int argc, char *argv[])
 {
@@ -27,7 +32,7 @@ int main(int argc, char *argv[])
         }
     }
     MainWindow w;
+    w.stashPresetList(FilesystemManager::fetchPresets());
     w.show();
-    w.stashInstanceOfProgram();
     return a.exec();
 }
