@@ -12,6 +12,7 @@
 #include <thread>
 #include <chrono>
 #include <string>
+#include <cmath>
 #endif
 
 #include <math.h>
@@ -65,7 +66,7 @@ MainWindow::~MainWindow()
 void MainWindow::stashPresetList(std::vector<FilesystemManager::preset> presets) {
     this->presets = presets;
     for (int i = 0; i < presets.size(); i++) {
-        ui->listWidget->addItem(QString::fromUtf8(presets[i].name));
+        ui->listWidget->addItem(QString::fromStdString(presets[i].name));
     }
 }
 

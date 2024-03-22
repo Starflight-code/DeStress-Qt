@@ -8,6 +8,7 @@
 #include <thread>
 #include <chrono>
 #include <string>
+#include <cmath>
 #endif
 
 #ifndef _FILESYSTEMMANAGER_CPP

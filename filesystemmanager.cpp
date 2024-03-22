@@ -80,7 +80,8 @@ public:
         for (const auto &entry : std::filesystem::directory_iterator(currentPath + c.assetFolderAppend))
         {
             // std::cout << entry.path() << std::endl;
-            files.push_back(entry.path());
+            // files.push_back(entry.path());
+            files.push_back(entry.path().string());
         }
         for (int i = 0; i < files.size(); i++)
         {
