@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "UI Files/mainwindow.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -13,7 +13,7 @@
 
 #ifndef _FILESYSTEMMANAGER_CPP
 #define _FILESYSTEMMANAGER_CPP
-#include "../Data Management/filesystemmanager.cpp"
+#include "Data Management/filesystemmanager.hpp"
 #endif
 
 int main(int argc, char* argv[]) {

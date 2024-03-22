@@ -3,7 +3,7 @@
 
 #ifndef _FILESYSTEMMANAGER_CPP
 #define _FILESYSTEMMANAGER_CPP
-#include "../Data Management/filesystemmanager.cpp"
+#include "../Data Management/filesystemmanager.hpp"
 #endif
 
 #include "mainprogram.h"

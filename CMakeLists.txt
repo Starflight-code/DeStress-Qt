@@ -15,7 +15,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 set(TS_FILES DeStress-QT_en_US.ts)
 
 set(PROJECT_SOURCES
-        "UI Files/main.cpp"
+        "main.cpp"
         "UI Files/mainwindow.cpp"
         "UI Files/mainwindow.h"
         "UI Files/mainwindow.ui"
@@ -23,6 +23,7 @@ set(PROJECT_SOURCES
         "UI Files/mainprogram.cpp"
         "UI Files/mainprogram.ui"
         "Data Management/filesystemmanager.cpp"
+        "Data Management/filesystemmanager.hpp"
         "Data Management/constants.cpp"
         "Data Management/datastructures.cpp"
         ${TS_FILES}
