@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>DeStress</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -54,7 +54,7 @@
      <x>0</x>
      <y>0</y>
      <width>811</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
