@@ -9,16 +9,16 @@
 
 #ifndef _BASICIMPORTS
 #define _BASICIMPORTS
-#include <thread>
 #include <chrono>
-#include <string>
 #include <cmath>
+#include <string>
+#include <thread>
 #endif
 
-#include <math.h>
 #include <QApplication>
-#include <QPushButton>
 #include <QPropertyAnimation>
+#include <QPushButton>
+// #include <math.h>
 
 #ifndef _DATASTRUCTURES_CPP
 #define _DATASTRUCTURES_CPP
@@ -30,12 +30,9 @@
 #include "filesystemmanager.cpp"
 #endif
 
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
-    auto animation = [](Ui::MainWindow *window, int time_in_seconds) {
+MainWindow::MainWindow(QWidget* parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow) {
+    auto animation = [](Ui::MainWindow* window, int time_in_seconds) {
         /*std::this_thread::sleep_for(std::chrono::milliseconds(100));
         int updateInterval_ms = 10;
         int step =  updateInterval_ms / time_in_seconds;
@@ -51,28 +48,25 @@ MainWindow::MainWindow(QWidget *parent)
             }
         }*/
     };
-    //using namespace std::this_thread; // sleep_for, sleep_until
-    //using namespace std::chrono; // nanoseconds, system_clock, seconds
+    // using namespace std::this_thread; // sleep_for, sleep_until
+    // using namespace std::chrono; // nanoseconds, system_clock, seconds
     ui->setupUi(this);
-    //std::thread thread_object(animation, ui, 10);
-    //thread_object.detach();
+    // std::thread thread_object(animation, ui, 10);
+    // thread_object.detach();
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
 void MainWindow::stashPresetList(std::vector<FilesystemManager::preset> presets) {
     this->presets = presets;
-    for (int i = 0; i < presets.size(); i++) {
+    for(int i = 0; i < presets.size(); i++) {
         ui->listWidget->addItem(QString::fromStdString(presets[i].name));
     }
 }
 
-
-void MainWindow::on_pushButton_clicked()
-{
+void MainWindow::on_pushButton_clicked() {
     int index = ui->listWidget->currentRow();
     this->hide();
     std::cout << "Starting Program";
@@ -82,8 +76,6 @@ void MainWindow::on_pushButton_clicked()
     };
     std::thread thread_object(threaded, presets[index].presetContent, ui->spinBox->value());
     thread_object.detach();
-    //program.start(sequence);
-    //this->show();
-
+    // program.start(sequence);
+    // this->show();
 }
-

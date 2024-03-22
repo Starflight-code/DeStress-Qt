@@ -9,20 +9,19 @@
 #endif
 
 namespace Ui {
-class MainProgram;
+    class MainProgram;
 }
 
-class MainProgram : public QMainWindow
-{
+class MainProgram : public QMainWindow {
     Q_OBJECT
 
 public:
-    explicit MainProgram(QWidget *parent = nullptr);
+    explicit MainProgram(QWidget* parent = nullptr);
     ~MainProgram();
     void start(std::vector<DataStructures::sequenceItem>, int);
 
 private:
-    Ui::MainProgram *ui;
+    Ui::MainProgram* ui;
 };
 
 #endif // MAINPROGRAM_H

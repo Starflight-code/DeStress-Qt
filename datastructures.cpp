@@ -1,9 +1,9 @@
 #ifndef _BASICIMPORTS
 #define _BASICIMPORTS
-#include <string>
 #include <chrono>
-#include <thread>
 #include <cmath>
+#include <string>
+#include <thread>
 #endif
 
 class DataStructures {
@@ -17,10 +17,6 @@ public:
         }
     };
 
-    DataStructures()
-    {
-
+    DataStructures() {
     }
-
-
 };
